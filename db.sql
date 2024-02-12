@@ -167,3 +167,30 @@ SET date_listed = '2023-11-7'
 WHERE PID = 1;
 
 SELECT * FROM property;
+
+INSERT INTO students VALUES
+('aa000', 'abc', 'ABC', '3433433433', '1 Sample Street, Kingston, ON', 20240213, (STR_TO_DATE('20270501'), 'Program0'),
+('aa001', 'abd', 'ABD', '3433433434', '2 Sample Street, Kingston, ON', 20240214, (STR_TO_DATE('20270501'), 'Program1'),
+('aa002', 'abe', 'ABE', '3433433435', '3 Sample Street, Kingston, ON', 20240215, (STR_TO_DATE('20270501'), 'Program2'),
+('aa003', 'abf', 'ABF', '3433433436', '4 Sample Street, Kingston, ON', 20240216, (STR_TO_DATE('20270501'), 'Program3'),
+('aa004', 'abg', 'ABG', '3433433437', '5 Sample Street, Kingston, ON', 20240217, (STR_TO_DATE('20270501'), 'Program4');
+
+UPDATE students SET first_name = 'bbc' WHERE UID = 'aa000';
+UPDATE students SET last_name = 'bbd' WHERE UID = 'aa001';
+UPDATE students SET phone = '3433433445' WHERE UID = 'aa002';
+UPDATE students SET address = '3 Alter Street, Kingston, ON' WHERE UID = 'aa003';
+UPDATE students SET student_id = '20240317' WHERE UID = 'aa004';
+
+INSERT INTO rental_group VALUES
+('0000', 'apartment', 2, 2, NO, 'ensuite', NULL, NULL, NO),
+('0001', 'house', 3, 1, YES, 'shared', NULL, NULL, YES);
+
+UPDATE rental_group SET bathrooms = 1 WHERE GID = '0000';
+UPDATE rental_group SET accessibility = NO WHERE GID = '0001';
+
+INSERT INTO make_group VALUES
+('aa000', '0000'),
+('aa001', '0000'),
+('aa002', '0001'),
+('aa003', '0001'),
+('aa004', '0001');
