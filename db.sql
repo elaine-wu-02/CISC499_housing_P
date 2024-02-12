@@ -126,48 +126,73 @@ CREATE TABLE make_group (
 
 INSERT INTO property (house_name, address, house_type, monthly_rent, bedrooms, bathrooms, parking, laundry, fenced_yard, detached_or_semi, elevator, number_of_people, private_kitchen, furniture, date_listed)
 VALUES
-('334 Kingscourt Ave', '334 Kingscourt Ave, # 1, Kingston, ON K7K 4R5', 'Apartment', 2349, 3, 1, true, 'shared', false, 'yes', false, NULL, true, 'bed, desk, chair', '2023-11-7'),
-('631 Aylmer Cres', '631 Aylmer Cres, # 2, Kingston, ON K7M 6K3', 'Apartment', 1899, 2, 1, true, 'shared', true, 'yes', false, NULL, true, 'bed, desk, chair', '2023-11-13'),
-('136 Chatham St', '136 Chatham St, Kingston, ON K7K 4H4', 'Apartment', 3000, 2, 1, true, 'ensuite', true, 'yes', false, NULL, true, 'bed, desk, chair', '2024-1-12'),
-('1145 Coverdale Dr', '1145 Coverdale Dr, Kingston, ON K7M 8X7', 'Apartment', 3000, 3, 1, true, 'ensuite', true, 'yes', false, NULL, true, 'bed, desk, chair', '2024-1-11'),
-('139 Mowat Ave', '139 Mowat Ave, Kingston, ON K7M 1K5', 'Single Family Residence', 2700, 3, 1, true, 'shared', true, 'yes', false, NULL, true, 'bed, desk, chair', '2024-1-4');
+('Brand new apartment', '39 Ellerbeck St, Kingston, ON K7L 4H5', 'Apartment', 6600, 6, 2, false, 'In Unit', false, 'Detached', false, 6, true, 'Bed frames, living room sofa, dining table, chairs', '2023-11-7'),
+('Cozy room across from the pier', '42 Beverley St, Unit #3, Kingston, ON K7L 3Y4', 'Single Family Residence', 1195, 4, 1, true, 'In Unit', false, 'Detached', false, 1, true, 'Bed, desk', '2023-11-13'),
+('One bedroom near Victoria Hall', '163 Union St, Kingston, ON K7L 2P4', 'Single Family Residence', 1127, 8, 4, true, 'Shared', true, 'Detached', false, 1, false, 'Bed, desk, chair, mini-dressers, corner couch, floor lamp, mini fridge', '2024-1-12'),
+('Newly renovated apartment', '630 Princess St, Kingston, ON K7L 1E3', 'Apartment', 2200, 2, 1, true, 'In unit', false, 'Semi', true, 2, true, 'None', '2024-1-11'),
+('Clean, modern, private room', '487 Brock St, Kingston, ON K7L 1T7', 'Townhouse', 750, 7, 3, true, 'Shared', false, 'Semi', false, 1, false, 'Bed, desk, chair, dressers, nightstand, lamp', '2024-2-11');
 
-UPDATE property
-SET stats = 'on market'
-WHERE house_name = '334 Kingscourt Ave' AND address = '334 Kingscourt Ave, # 1, Kingston, ON K7K 4R5';
 
-UPDATE property
-SET stats = 'pending'
-WHERE PID IN (2, 3, 4);
+-- Insert pictures for properties
+-- 39 Ellerbeck St
+INSERT INTO pictures (PID, file_name)
+VALUES
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424965808_2129267980757811_5299665170192949980_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/422065609_2129267960757813_6523283802791891132_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/422615666_2129270637424212_4848413286391023737_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424589556_2129267987424477_5483036318190958751_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424660732_2129267984091144_6145162977533956175_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424660989_2129267957424480_289666872341173166_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424687299_2129267994091143_7047179514255385314_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424736058_2129267977424478_2610722601137708788_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424786516_2129267990757810_7085242218693598515_n.jpg'),
+(1, 'https://raw.githubusercontent.com/elaine-wu-02/CISC499_housing_P/main/pictures/39%20Ellerbeck%20St/424990016_2129267997424476_6170454248064395425_n.jpg');
 
-UPDATE property
-SET stats = 'off market'
-WHERE PID IN (5, 6);
+-- 42 Beverley St, Unit #3
+INSERT INTO pictures (PID, file_name)
+VALUES
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420539590_341553988787497_5043197548815890386_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420537612_341553868787509_7541008154464351356_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420539778_341553975454165_1857321005508351790_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420538353_341553955454167_1219281069889944169_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420539241_341553945454168_3488689691358054556_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420539781_341554048787491_3922784051304451867_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420540441_341554002120829_6367095456849384089_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420542874_341553865454176_6224725072827078646_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420563041_341554042120825_1184932731889740600_n.jpg'),
+(2, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/42%20Beverley%20St/420956279_341553932120836_6510065877131399546_n.jpg');
 
-DELETE FROM property WHERE PID = 1;
 
-UPDATE property
-SET date_listed = '2023-11-12'
-WHERE PID = 5;
+-- 163 Union St
+INSERT INTO pictures (PID, file_name)
+VALUES
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/405506539_7206397782750245_3790921527991629855_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/410596409_24480086364968419_3265162272506884298_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/416996070_25577993245133194_1743908844713870305_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417028973_25668335872750715_4449124194916932334_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417084145_7249316455120623_6446019478767462285_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417084250_6992847394143525_9143039459607559308_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417125274_24767317229548693_3469006524305408163_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417159084_6787832141346575_3315687504344718260_n.jpg'),
+(3, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/163%20Union%20St/417264501_6948240728623598_814383685964250920_n.jpg');
 
-UPDATE property
-SET date_listed = '2023-11-12'
-WHERE PID = 4;
+-- 630 Princess St
+INSERT INTO pictures (PID, file_name)
+VALUES
+(4, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/630%20Princess%20St/406925344_7073332062747614_1970589403061136666_n.jpg'),
+(4, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/630%20Princess%20St/419600980_7389577927767799_4511443589162453861_n.jpg'),
+(4, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/630%20Princess%20St/420536280_7014564711971368_7989907287922750493_n.jpg'),
+(4, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/630%20Princess%20St/422227455_7215618161863603_5997401127060306447_n.jpg'),
+(4, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/630%20Princess%20St/422693232_6778460868932277_5732882240215386565_n.jpg');
 
-UPDATE property
-SET date_listed = '2024-1-12'
-WHERE PID = 3;
+-- 487 Brock St
+INSERT INTO pictures (PID, file_name)
+VALUES
+(5, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/487%20Brock%20St/379718227_7309960195710540_1459522285989104945_n.jpg'),
+(5, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/487%20Brock%20St/382483427_7111415975544483_3438644587236511192_n.jpg'),
+(5, 'https://github.com/elaine-wu-02/CISC499_housing_P/blob/main/pictures/487%20Brock%20St/385796637_6546613352102540_3582619407499888739_n.jpg');
 
-UPDATE property
-SET date_listed = '2024-1-11'
-WHERE PID = 2;
-
-UPDATE property
-SET date_listed = '2023-11-7'
-WHERE PID = 1;
-
-SELECT * FROM property;
-
+-- add 5 sample students looking for rent.
 INSERT INTO students VALUES
 ('aa000', 'abc', 'ABC', '3433433433', '1 Sample Street, Kingston, ON', 20240213, (STR_TO_DATE('20270501'), 'Program0'),
 ('aa001', 'abd', 'ABD', '3433433434', '2 Sample Street, Kingston, ON', 20240214, (STR_TO_DATE('20270501'), 'Program1'),
@@ -175,19 +200,12 @@ INSERT INTO students VALUES
 ('aa003', 'abf', 'ABF', '3433433436', '4 Sample Street, Kingston, ON', 20240216, (STR_TO_DATE('20270501'), 'Program3'),
 ('aa004', 'abg', 'ABG', '3433433437', '5 Sample Street, Kingston, ON', 20240217, (STR_TO_DATE('20270501'), 'Program4');
 
-UPDATE students SET first_name = 'bbc' WHERE UID = 'aa000';
-UPDATE students SET last_name = 'bbd' WHERE UID = 'aa001';
-UPDATE students SET phone = '3433433445' WHERE UID = 'aa002';
-UPDATE students SET address = '3 Alter Street, Kingston, ON' WHERE UID = 'aa003';
-UPDATE students SET student_id = '20240317' WHERE UID = 'aa004';
-
+-- add 2 sample groups of the previous 5 students with their requirements of rental features.
 INSERT INTO rental_group VALUES
 ('0000', 'apartment', 2, 2, NO, 'ensuite', NULL, NULL, NO),
 ('0001', 'house', 3, 1, YES, 'shared', NULL, NULL, YES);
 
-UPDATE rental_group SET bathrooms = 1 WHERE GID = '0000';
-UPDATE rental_group SET accessibility = NO WHERE GID = '0001';
-
+-- group the previous 5 students into 2 groups.
 INSERT INTO make_group VALUES
 ('aa000', '0000'),
 ('aa001', '0000'),
