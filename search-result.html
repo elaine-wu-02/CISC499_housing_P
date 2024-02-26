@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+    <% if (students.length > 0) { %>
+    <ul>
+        <% students.forEach(function(item) { %>
+        <li><%= students.fName %>, <%= students.lName %> - <%= students.phone %>.</li>
+        <% }); %>
+    </ul>
+    <% } else { %>
+    <p>No students available found.</p>
+    <% } %>
+</head>
+<body>
+
+</body>
+</html>

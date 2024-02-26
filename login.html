@@ -1,0 +1,27 @@
+<!-- public/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login</title>
+</head>
+<body>
+    <a href="/signup.html">Sign Up</a>
+    <form method="post">
+        <label for="phone">Phone Number: </label><br>
+        <input type="text" id="phone" name="phone"><br>
+        <label for="password">Password: </label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" name="Login">
+    </form>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('error')) {
+            const error = params.get('error');
+            if (error === 'incorrect') {
+                alert("Incorrect phone or password")
+            }
+        }
+    </script>
+</body>
+</html>

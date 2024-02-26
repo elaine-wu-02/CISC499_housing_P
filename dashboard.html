@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Page</title>
+</head>
+<body>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('created')) {
+            alert('New group created.');
+        }
+        if (params.has('changed')) {
+            alert('Group preference changed.');
+        }
+        if (params.has('canceled')) {
+            alert('Preference change canceled.');
+        }
+    </script>
+    <h2>Student Information</h2>
+    <h3 id="Container"><strong>Profile</strong></h3>
+    <script>
+            fetch('/dashboard')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const container = document.getElementById('Container');
+                container.innerHTML = ''; // Clear loading text
+                if (data[0].gid === null) {
+                    container.innerHTML += '<button>New group</button>';
+                }
+                else {
+                    container.innerHTML += '<a href="/modify-group">Modify group</a>';
+                    container.innerHTML += '<h3>Members</h3>';
+                    data[1].forEach(row => {
+                        container.innerHTML += `<p>${row.fName}: ${row.lName}</p>`;
+                    });
+                    container.innerHTML += '<a href="/member">New member</a>';
+                    container.innerHTML += '<a href="/delete-member">Delete member</a>'
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
