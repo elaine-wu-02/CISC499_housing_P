@@ -1,18 +1,16 @@
 const mysql = require('mysql');
 const express = require('express');
+const path = require('path');
+const http = require('http');
+const fs = require ('fs');
 const session = require('express-session');
 const app = express();
-// const bcrypt = require('bcrypt');
-
 const PORT = process.env.PORT || 3000;
-
-app.set('view engine', 'ejs');
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
 app.use(session({
     secret: '',
     resave: false,
@@ -116,54 +114,18 @@ function generateUniqueGID(existingGIDs){
     return uniqueGID;
 }
 
-connection.query('INSERT INTO students (uid, fName, lName, phone, password, address, studentID, gradYear, program) ' +
+connection.query('INSERT INTO `students` (uid, fName, lName, phone, password, address, studentID, gradYear, program) ' +
     'VALUES ("aa000", "Elaine", "Wu", "5489899512", "Wyx_20020803", "333 University Avenue", 20198899, 2025, "Computer Science")');
-connection.query('INSERT INTO groups (gid) ' +
+connection.query('INSERT INTO `groups` (gid) ' +
     'VALUES ("0000");');
-connection.query('INSERT INTO grouping (gid, uid) ' +
+connection.query('INSERT INTO `grouping` (gid, uid) ' +
     'VALUES ("0000", "aa000");');
-connection.query('INSERT INTO students (uid, fName, lName, phone, password, address, studentID, gradYear, program) ' +
+connection.query('INSERT INTO `students` (uid, fName, lName, phone, password, address, studentID, gradYear, program) ' +
     'VALUES ("aa001", "Evelyn", "Fan", "3433433433", "Fxr_20020130", "333 University Avenue", 20202020, 2025, "Education");');
 
-app.get('/login', () =>{
-    console.log("Login page.");
-})
-
-app.post('/login', async (req, res) => {
-    const phone = req.body.phone;
-    const password = req.body.password;
-    console.log("Login page.");
-    connection.query('SELECT uid FROM students WHERE phone = ? AND password = ? LIMIT 1', [phone, password], (err, results) => {
-        if (err) throw err;
-        if (0 === results.length) {
-            console.log("Incorrect phone or password.");
-            res.redirect('/login?error=incorrect');
-        } else {
-            console.log("Successfully login. Jump to dashboard.");
-            res.redirect('/dashboard');
-        }
-    });
-});
-
-app.post('/signup', async (req, res) => {
-    const fName = req.body.fName;
-    const lName = req.body.lName;
-    const phone = req.body.phone;
-    const password = req.body.password;
-    connection.query('SELECT uid FROM students', (err, results) => {
-        if (err) throw err;
-
-        // Assuming you want to extract just the uids into an array
-        const existingUIDs = results.map(result => result.uid);
-        let UID = generateUniqueUID(existingUIDs);
-        connection.query('INSERT INTO students (uid, lName, fName, phone, password) VALUES (?, ?, ?, ?, ?)', [UID, fName, lName, phone, password]);
-        req.session.uid = UID;
-        res.redirect(`/Student-Elaine`);
-    });
-});
-
-app.get('/dashboard', async (req, res) => {
+app.get('/dashboard.html', function (req, res, next) {
     // if (req.session.uid) {
+    console.log("dashboard-get");
     let UID;
     try {
         UID = req.session.uid;
@@ -190,7 +152,7 @@ app.get('/dashboard', async (req, res) => {
                 })
             }
             console.log(student, members);
-            res.json([student, members]);
+            res.next(student, members);
         });
     }
     // }
@@ -200,13 +162,13 @@ app.get('/dashboard', async (req, res) => {
 });
 
 app.post('/dashboard', async (req, res) => {
-    connection.query("SELECT gid FROM groups", (err, results) => {
+    connection.query("SELECT gid FROM `groups`", (err, results) => {
         if (err) throw err;
         existingGIDs = results.map(result => result.gid);
         let GID = generateUniqueGID(existingGIDs);
-        connection.query("INSERT INTO groups (gid) VALUES (?)", [GID], (err) => {
+        connection.query("INSERT INTO `groups` (gid) VALUES (?)", [GID], (err) => {
             if (err) throw err;
-            connection.query("INSERT INTO grouping (gid, uid) VALUES (?, ?)", [GID, UID], (err) => {
+            connection.query("INSERT INTO `grouping` (gid, uid) VALUES (?, ?)", [GID, UID], (err) => {
                 if (err) throw err;
             })
             res.redirect('/dashboard?created')
